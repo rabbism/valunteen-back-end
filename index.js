@@ -8,15 +8,14 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const MongoClient = require('mongodb').MongoClient;
-const ObjectId = require('mongodb').ObjectId;
-const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.xjikz.mongodb.net/volunteerDB?retryWrites=true&w=majority`;
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
+const MongoClient = require('mongodb').MongoClient;
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.elm9b.mongodb.net/volunteerNetwork?retryWrites=true&w=majority`;
+const client = new MongoClient(uri, { useNewUrlParser: true,useUnifiedTopology: true });
 
 
 client.connect(err => {
-    const volunteerCollection = client.db("volunteerDB").collection("volunteers");
+    const volunteerCollection = client.db("volunteerNetwork").collection("volunteers");
 
     //  welcome
     app.get("/", (req, res) => {
